@@ -1,0 +1,14 @@
+.title{
+    font-size:30px;
+}
+
+.content{
+    margin:10px auto;
+    font-size:18px;
+    color:#eee;
+}
+
+.date{
+    font-size:16px;
+    text-align: left;
+}
