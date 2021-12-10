@@ -5,5 +5,4 @@ module.exports = {
     singleQuote: true,
     trailingComma: 'all',
     bracketSpacing: true,
-    parser: "flow"
 };

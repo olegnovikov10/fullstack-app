@@ -1,7 +1,6 @@
 module.exports = {
     "env": {
         "node": true,
-        "browser": true,
         "commonjs": true,
         "es2021": true
     },
@@ -16,8 +15,8 @@ module.exports = {
     "rules": {
         "prettier/prettier": [
             "error", {
-            "endOfLine": "auto"
-             }
+                "endOfLine": "auto"
+            }
         ]
     }
 };
