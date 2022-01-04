@@ -1,0 +1,23 @@
+{
+  "name": "fullstack-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olegnovikov10/fullstack-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olegnovikov10/fullstack-app/issues"
+  },
+  "homepage": "https://github.com/olegnovikov10/fullstack-app#readme",
+  "devDependencies": {
+    "husky": "^7.0.4"
+  }
+}
