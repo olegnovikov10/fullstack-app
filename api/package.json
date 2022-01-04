@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/app.js",
     "start-dev": "nodemon src/app.js",
-    "eslint": "eslint --debug src/*.js",
+    "eslint": "eslint --debug src/*.js --fix",
     "prepare": "cd .. && husky install api/.husky"
   },
   "author": "",
@@ -27,7 +27,7 @@
   },
   "lint-staged": {
     "src/**/*.js": [
-      "eslint",
+      "eslint"
     ]
   }
 }
