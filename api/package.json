@@ -1,4 +1,4 @@
-{
+ {
   "name": "api",
   "version": "1.0.0",
   "description": "",
@@ -12,7 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.12.5"
   },
   "devDependencies": {
     "dotenv": "^10.0.0",
