@@ -1,4 +1,4 @@
- {
+{
   "name": "api",
   "version": "1.0.0",
   "description": "",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/app.js",
     "start-dev": "nodemon src/app.js",
-    "eslint": "eslint --debug src/*.js --fix"
+    "eslint": "eslint --debug src/*.js"
   },
   "author": "",
   "license": "ISC",
@@ -28,7 +28,7 @@
   },
   "lint-staged": {
     "src/**/*.js": [
-      "eslint"
+      "eslint --fix"
     ]
   }
 }

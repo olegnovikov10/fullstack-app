@@ -1,10 +1,12 @@
 const express = require('express')
-
 const sequelize = require('./services/db')
-
 const config = require('./services/config')
+// eslint-disable-next-line
+const models = require('./models/models')
 
 const app = express()
+
+app.use(express.json())
 
 const start = async () => {
 	try {
