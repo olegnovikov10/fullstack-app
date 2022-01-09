@@ -10,7 +10,7 @@ class CommentController {
 		return res.json(comment)
 	}
 	async getAll(req, res) {
-		const comment = await Comment.findAll()
+		const comment = await Comment.findAll({ where: { postId: req.query.postId } })
 		return res.json(comment)
 	}
 	async update(req, res) {

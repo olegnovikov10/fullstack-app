@@ -10,8 +10,8 @@ class LikeController {
 		return res.json(like)
 	}
 	async getAll(req, res) {
-		const likes = await Like.findAll()
-		return res.json(likes)
+		const like = await Like.findAll({ where: { postId: req.query.postId } })
+		return res.json(like)
 	}
 	async update(req, res) {
 		const like = await Like.update(req.body, { where: { id: req.params.id } })
