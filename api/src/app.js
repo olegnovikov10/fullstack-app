@@ -1,8 +1,25 @@
 const express = require('express')
+const sequelize = require('./services/db')
+const config = require('./services/config')
+// eslint-disable-next-line
+const models = require('./models/models')
+const router = require('./routes/index')
+
 const app = express()
 
-app.get('/', function (req, res) {
-	res.send('Hello World')
-})
+app.use(express.json())
+app.use('/api', router)
 
-app.listen(process.env.APP_PORT)
+const start = async () => {
+	try {
+		await sequelize.authenticate()
+		await sequelize.sync()
+		app.listen(config.appPort, () => {
+			console.log('work')
+		})
+	} catch (e) {
+		console.log(e)
+	}
+}
+
+start()
