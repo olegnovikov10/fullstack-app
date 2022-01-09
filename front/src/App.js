@@ -1,19 +1,20 @@
-import logo from './logo.svg'
+import { useState } from 'react'
+
 import './App.css'
-import { UserPostContainer } from './containers/userPost/index'
+import Header from './containers/Header'
+import Body from './containers/Body'
+
 
 function App() {
+	const [pageName,setPageName] = useState()
+	function getPageNameHandle (pageName){
+		setPageName(pageName)
+	}
+
 	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<UserPostContainer
-					firstName="Oleg"
-					secondName="Novikov"
-					date="14.08.2021"
-					content="Hello! It's my new post"
-				/>
-			</header>
+		<div>
+			<Header getPageNameHandle={getPageNameHandle} />
+			<Body pageName={pageName} />
 		</div>
 	)
 }
