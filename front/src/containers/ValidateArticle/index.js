@@ -6,38 +6,33 @@ export const ValidateArticle = () => {
 
 	let checkWordsUp = params.id.match(/^[A-Z]+$/)
 
-	const extList = ['jpeg','doc','pdf'];
+	const extList = ['jpeg', 'doc', 'pdf']
 
 	function checkRouteOnFilePath(params) {
-		try{
-			let arr = params.split('.');
-			const fileName = arr[0].match(/^\w+$/);
+		try {
+			let arr = params.split('.')
+			const fileName = arr[0].match(/^\w+$/)
 			const extRes = extList.includes(arr[1])
-			if(fileName && extRes){
+			if (fileName && extRes) {
 				return true
 			}
-		}
-		catch(e){
+		} catch (e) {
 			console.log(e)
 			return false
 		}
 	}
 
-	if(checkNumber){
+	if (checkNumber) {
 		return <div> Our Component</div>
 	}
 
-	if(checkWordsUp){
+	if (checkWordsUp) {
 		return <div> Our Component with ONLY UP WORDS</div>
 	}
 
-	if(checkRouteOnFilePath(params.id)) {
+	if (checkRouteOnFilePath(params.id)) {
 		return <div> Our Component filename</div>
 	}
 
-
-
-	return(
-		<>404</>
-	)
+	return <>404</>
 }
