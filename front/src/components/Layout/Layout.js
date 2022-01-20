@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
+import { Header } from '../../containers/Header'
 
-
-export const Header = () => {
+export const Layout = () => {
 	return (
-			<header>
+		<div>
+			<Header>
 				<div style={containerStyle}>
 					<Link style={styleLink} to="/articles">
 						Articles list
@@ -15,7 +16,9 @@ export const Header = () => {
 						My profile
 					</Link>
 				</div>
-			</header>
+			</Header>
+			<Outlet />
+		</div>
 	)
 }
 
