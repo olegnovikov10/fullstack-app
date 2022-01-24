@@ -1,11 +1,13 @@
 import { Routes, Route } from 'react-router-dom'
 import { Layout } from './components/Layout/Layout'
-import { ValidateArticle } from './containers/ValidateArticle'
 import { Dates } from './components/Date'
-import Articles from './components/Articles'
+import Posts from './containers/Posts/index'
+import DetailPost from './containers/Post'
 import AddArticle from './components/AddArticle'
-import Profile from './components/Profile'
+import UserProfileContainer from './containers/UserProfile'
+import UsersContainer from './containers/Users'
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 	return (
@@ -13,95 +15,11 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route path="date/:date" element={<Dates />} />
-					<Route path="articles" element={<Articles />} />
-					<Route path="articles/:id" element={<ValidateArticle />} />
+					<Route path="users" element={<UsersContainer />} />
+					<Route path="users/:id" element={<UserProfileContainer />} />
+					<Route path="posts" element={<Posts />} />
+					<Route path="posts/:id" element={<DetailPost />} />
 					<Route path="addarticle" element={<AddArticle />} />
-					<Route
-						path="profile"
-						element={
-							<Profile
-								name="oleg"
-								age={29}
-								alias="alias-profile"
-								user={{
-									name: 'test',
-									age: '23',
-									avatar: {
-										file: {
-											id: 1,
-											name: '123.jpg',
-											path: '/files/1.jpg',
-										},
-									},
-									files: [
-										{
-											id: 1,
-											name: '123.jpg',
-											path: '/files/1.jpg',
-										},
-										{
-											id: 1,
-											name: '123.jpg',
-											path: '/files/1.jpg',
-										},
-									],
-									addrr: {
-										main: {
-											line1: 'test',
-											line2: 'test',
-											city: 'test',
-											zip: 1234,
-										},
-										alt: {
-											line1: 'test',
-											line2: 'test',
-											city: 'test',
-											zip: 1234,
-										},
-									},
-									friends: [
-										{
-											name: 'test',
-											age: '23',
-											avatar: {
-												file: {
-													id: 1,
-													name: '123.jpg',
-													path: '/files/1.jpg',
-												},
-											},
-											files: [
-												{
-													id: 1,
-													name: '123.jpg',
-													path: '/files/1.jpg',
-												},
-												{
-													id: 1,
-													name: '123.jpg',
-													path: '/files/1.jpg',
-												},
-											],
-											addrr: {
-												main: {
-													line1: 'test',
-													line2: 'test',
-													city: 'test',
-													zip: 1234,
-												},
-												alt: {
-													line1: 'test',
-													line2: 'test',
-													city: 'test',
-													zip: 1234,
-												},
-											},
-										},
-									],
-								}}
-							/>
-						}
-					/>
 					<Route path="*" element={<div>404 error</div>} />
 				</Route>
 			</Routes>
