@@ -8,6 +8,8 @@ const router = require('./routes/index')
 
 const app = express()
 
+global.__basedir = __dirname
+
 app.use(cors())
 
 app.use(express.json())

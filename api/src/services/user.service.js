@@ -16,4 +16,24 @@ module.exports = {
 	deleteUser: async (userId) => {
 		return await User.destroy({ where: { id: userId } })
 	},
+	addFile: async (path, userId) => {
+		return await User.update(
+			{
+				avatar: path,
+			},
+			{
+				where: {
+					id: userId,
+				},
+			},
+		)
+	},
+	getFile: async (userId) => {
+		return await User.findOne({
+			where: {
+				id: userId,
+			},
+			attributes: ['avatar'],
+		})
+	},
 }
