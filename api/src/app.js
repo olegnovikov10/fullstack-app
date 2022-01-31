@@ -1,12 +1,14 @@
 const express = require('express')
 const cors = require('cors')
-const sequelize = require('./services/db')
-const config = require('./services/config')
+const sequelize = require('./config/db')
+const config = require('./config/config')
 // eslint-disable-next-line
 const models = require('./models/models')
 const router = require('./routes/index')
 
 const app = express()
+
+global.__basedir = __dirname
 
 app.use(cors())
 
