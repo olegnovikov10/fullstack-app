@@ -1,23 +1,18 @@
 import { Link } from 'react-router-dom'
+import {Container} from '@mui/material'
 
 export const Header = () => {
 	return (
-		<header>
-			<div style={containerStyle}>
-				<Link style={styleLink} to="/users">
-					Users
-				</Link>
-				<Link style={styleLink} to="/posts">
-					Posts list
-				</Link>
-				<Link style={styleLink} to="/addarticle">
-					Article add
-				</Link>
-				<Link style={styleLink} to="/profile">
-					My profile
-				</Link>
-			</div>
-		</header>
+		<Container maxWidth="sm" >
+				<div style={containerStyle}>
+					<Link style={styleLink} to="/users">
+						Users
+					</Link>
+					<Link style={styleLink} to="/posts">
+						Posts list
+					</Link>
+				</div>
+		</Container>
 	)
 }
 

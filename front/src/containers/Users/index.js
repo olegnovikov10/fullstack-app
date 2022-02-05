@@ -8,10 +8,12 @@ const UsersContainer = () => {
 		getUsers(),
 	)
 	const users = data?.data || []
+
+
 	return (
 		<>
 			{isFetching && <Loading />}
-			<Users users={users} />
+			<Users  users={users} />
 		</>
 	)
 }
