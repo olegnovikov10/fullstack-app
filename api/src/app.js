@@ -6,14 +6,23 @@ const config = require('./config/config')
 const models = require('./models/models')
 const router = require('./routes/index')
 
+const error = require('./middleware/error')
+
+const logsMiddleware = require('./middleware/logs')
+
 const app = express()
 
 global.__basedir = __dirname
 
+app.use(logsMiddleware({ logTable: models.Logs }))
+
 app.use(cors())
 
 app.use(express.json())
+
 app.use('/api', router)
+
+app.use(error)
 
 const start = async () => {
 	try {
