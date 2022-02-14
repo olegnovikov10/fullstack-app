@@ -12,6 +12,7 @@ const Posts = ({ posts, handleIsOpenPost, handleEditPost }) => {
 				return (
 					<div key={post.id}>
 						<div>{post.content}</div>
+						<div>{post.visibility}</div>
 						<Button variant="contained" onClick={editPost(post)}>
 							Редактировать...
 						</Button>
