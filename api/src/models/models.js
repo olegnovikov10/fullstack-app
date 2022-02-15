@@ -30,6 +30,9 @@ const User = sequelize.define('user', {
 	avatar: {
 		type: DataTypes.STRING,
 	},
+	visibility: {
+		type: DataTypes.STRING,
+	},
 })
 
 const Post = sequelize.define('post', {
@@ -41,6 +44,9 @@ const Post = sequelize.define('post', {
 	content: {
 		type: DataTypes.STRING,
 		allowNull: false,
+	},
+	visibility: {
+		type: DataTypes.STRING,
 	},
 })
 

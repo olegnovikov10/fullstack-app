@@ -1,14 +1,21 @@
-import { Link } from 'react-router-dom'
 import PT from 'prop-types'
+import { Button, Grid } from '@mui/material'
 
-const Posts = ({ posts }) => {
+const Posts = ({ posts, handleIsOpenPost, handleEditPost }) => {
+	const editPost = (post) => () => {
+		handleIsOpenPost()
+		handleEditPost(post, 'EDIT')
+	}
 	return (
 		<div>
-			{posts?.map(({ id, content }) => {
+			{posts?.map((post) => {
 				return (
-					<div key={id}>
-						<div>{content}</div>
-						<Link to={`/posts/${id}`}> Подробнее...</Link>
+					<div key={post.id}>
+						<div>{post.content}</div>
+						<div>{post.visibility}</div>
+						<Button variant="contained" onClick={editPost(post)}>
+							Редактировать...
+						</Button>
 					</div>
 				)
 			})}
@@ -17,10 +24,9 @@ const Posts = ({ posts }) => {
 }
 
 Posts.propTypes = {
-	posts : PT.array.isRequired
+	posts: PT.array.isRequired,
+	handleIsOpenPost: PT.func,
+	handleEditPost: PT.func,
 }
-
-
-
 
 export default Posts
