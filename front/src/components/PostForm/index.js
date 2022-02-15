@@ -3,13 +3,15 @@ import * as Yup from 'yup'
 import PT from 'prop-types'
 
 import FormikAutocomplete from '../FormAutocomplete/FormAutocomplete'
+import  Avatar from '../Avatar/index'
 
 import { Button } from '@mui/material'
 import { TextField } from 'formik-mui'
-import { AddPost, updatePost } from '../../containers/Posts/api/crud'
+import { AddPost, updatePost , addAvatar } from '../../containers/Posts/api/crud'
 import { useMutation } from 'react-query'
 
 import './style.css'
+import { useState } from 'react'
 
 const PostForm = ({ post, handleIsOpenPost, action }) => {
 	const ADD = 'ADD'
@@ -33,7 +35,8 @@ const PostForm = ({ post, handleIsOpenPost, action }) => {
 	const handleOnSubmit = (data) => {
 		mutation.mutate({
 			content: data.content,
-			visibility : data.visibility
+			visibility : data.visibility.label,
+			avatar: resultImage
 		})
 		handleIsOpenPost()
 	}
@@ -43,25 +46,33 @@ const PostForm = ({ post, handleIsOpenPost, action }) => {
 	}
 
 	const mutation = useMutation((data) => {
+		const newData = Object.keys(data).reduce((object, key) => {
+			if (key !== 'avatar') {
+				object[key] = data[key]
+			}
+			return object
+		}, {})
 		if (action === ADD) {
-			AddPost(data)
+			AddPost(newData)
 		}
 		if (action === EDIT) {
-			updatePost(post?.id, data)
+			updatePost(post?.id, newData)
 		}
+		addAvatar(data.avatar , post.id)
+
 	})
 
 	const initialValue = {}
 
 	if (action === EDIT) {
 		initialValue.content = post?.content || ''
-	 initialValue.visibility = post?.visibility ? post?.visibility : options[0].label
 	}
 
 	if (action === ADD) {
 		initialValue.content = ''
-	 initialValue.visibility = ''
 	}
+
+	const [resultImage , setResultImage] =  useState()
 
 
 	return (
@@ -83,8 +94,10 @@ const PostForm = ({ post, handleIsOpenPost, action }) => {
 									component={FormikAutocomplete}
 									name="visibility"
 									label="visible to"
+									value={options.value}
 									options={options}
 								/>
+								<Avatar setResultImage={setResultImage}  />
 
 								<Field component={TextField} name="content" />
 								{errors.content ? <div>{errors.content}</div> : null}
