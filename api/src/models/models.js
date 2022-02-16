@@ -2,6 +2,26 @@ const sequelize = require('../config/db')
 
 const { DataTypes } = require('sequelize')
 
+const Logs = sequelize.define(
+	'logs',
+	{
+		id: {
+			type: DataTypes.INTEGER,
+			primaryKey: true,
+			autoIncrement: true,
+		},
+		method: {
+			type: DataTypes.STRING,
+		},
+		path: {
+			type: DataTypes.STRING,
+		},
+	},
+	{
+		updatedAt: false,
+	},
+)
+
 const User = sequelize.define('user', {
 	id: {
 		type: DataTypes.INTEGER,
@@ -22,12 +42,15 @@ const User = sequelize.define('user', {
 		allowNull: false,
 	},
 	phone: {
-		type: DataTypes.STRING,
+		type: DataTypes.INTEGER,
 	},
 	birthday: {
-		type: DataTypes.DATEONLY,
+		type: DataTypes.STRING,
 	},
 	avatar: {
+		type: DataTypes.STRING,
+	},
+	visibility: {
 		type: DataTypes.STRING,
 	},
 })
@@ -41,6 +64,12 @@ const Post = sequelize.define('post', {
 	content: {
 		type: DataTypes.STRING,
 		allowNull: false,
+	},
+	visibility: {
+		type: DataTypes.STRING,
+	},
+	avatar: {
+		type: DataTypes.STRING,
 	},
 })
 
@@ -100,4 +129,5 @@ module.exports = {
 	Post,
 	Like,
 	Comment,
+	Logs,
 }

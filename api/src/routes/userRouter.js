@@ -3,12 +3,14 @@ const router = new Router()
 const userController = require('../controllers/userController')
 const fileMiddleware = require('../middleware/file')
 
-router.get('/', userController.getAll)
+const asyncHandler = require('../middleware/asyncHandler')
+
+router.get('/', asyncHandler(userController.getAll))
 router.post('/:id/avatar', fileMiddleware.single('avatar'), userController.addFile)
-router.get('/:id', userController.getOne)
-router.get('/:id/avatar', userController.getAvatar)
-router.post('/', userController.create)
-router.put('/:id', userController.update)
-router.delete('/:id', userController.delete)
+router.get('/:id', asyncHandler(userController.getOne))
+router.get('/:id/avatar', asyncHandler(userController.getAvatar))
+router.post('/', asyncHandler(userController.create))
+router.put('/:id', asyncHandler(userController.update))
+router.delete('/:id', asyncHandler(userController.delete))
 
 module.exports = router

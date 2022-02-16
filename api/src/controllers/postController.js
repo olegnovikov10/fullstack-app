@@ -1,4 +1,6 @@
 const { Post } = require('../models/models')
+const path = require('path')
+const { addFile, getFile } = require('../services/post.service')
 
 class PostController {
 	async create(req, res) {
@@ -20,6 +22,20 @@ class PostController {
 	async delete(req, res) {
 		const post = await Post.destroy({ where: { id: req.params.id } })
 		return res.json(post)
+	}
+	async addFile(req, res) {
+		try {
+			if (req.file) {
+				await addFile(req.file.path, req.params.id)
+				return res.json(req.file)
+			}
+		} catch (e) {
+			console.log(e)
+		}
+	}
+	async getAvatar(req, res) {
+		const { avatar } = await getFile(req.params.id)
+		return res.sendFile(path.join(global.__basedir, `../${avatar}`))
 	}
 }
 
