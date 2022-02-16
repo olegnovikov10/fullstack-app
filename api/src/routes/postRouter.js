@@ -1,13 +1,16 @@
 const Router = require('express')
 const router = new Router()
 const postController = require('../controllers/postController')
+const fileMiddleware = require('../middleware/file')
 
-const asyncHandler = require('../middleware/asyncHandler')
 
-router.get('/', asyncHandler(postController.getAll))
-router.get('/:id', asyncHandler(postController.getOne))
-router.post('/', asyncHandler(postController.create))
-router.put('/:id', asyncHandler(postController.update))
-router.delete('/:id', asyncHandler(postController.delete))
+router.get('/', postController.getAll)
+router.get('/:id', postController.getOne)
+router.post('/', postController.create)
+router.put('/:id', postController.update)
+router.delete('/:id', postController.delete)
+router.get('/:id/avatar', postController.getAvatar)
+router.post('/:id/avatar', fileMiddleware.single('avatar'), postController.addFile)
+
 
 module.exports = router
