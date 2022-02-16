@@ -5,6 +5,7 @@ const config = require('./config/config')
 // eslint-disable-next-line
 const models = require('./models/models')
 const router = require('./routes/index')
+const path = require('path')
 
 const app = express()
 
@@ -14,6 +15,7 @@ app.use(cors())
 
 app.use(express.json())
 app.use('/api', router)
+app.use('/images', express.static(path.join(__dirname, '../images')))
 
 const start = async () => {
 	try {

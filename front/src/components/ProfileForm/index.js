@@ -5,9 +5,12 @@ import { Button } from '@mui/material'
 import { TextField } from 'formik-mui'
 
 import { useMutation } from 'react-query'
-import { updateUser } from '../../containers/UserProfile/api/crud'
+import { updateUser ,addAvatar } from '../../containers/UserProfile/api/crud'
 
 import './style.css'
+import FormikAutocomplete from '../FormAutocomplete/FormAutocomplete'
+import Avatar from '../Avatar'
+import { useState } from 'react'
 
 const ProfileForm = ({ userProfile, handleIsOpenForm }) => {
 	const Schema = Yup.object().shape({
@@ -23,18 +26,39 @@ const ProfileForm = ({ userProfile, handleIsOpenForm }) => {
 		birthday: Yup.string(),
 	})
 
+
+
+	const options = [
+		{ value: 'all', label: 'All people' },
+		{ value: 'fans', label: ' My fans' },
+		{ value: 'Me', label: 'For me' },
+	]
+
 	const handleOnSubmit = (data) => {
 		mutation.mutate({
 			alias: data.alias,
 			birthday: data.birthday,
 			name: data.name,
 			phone: data.phone,
+			visibility: data.visibility.label,
+			avatar : resultImage
 		})
+
 		handleIsOpenForm()
 	}
 
 	const mutation = useMutation((data) => {
-		updateUser(data, userProfile.id)
+		const newData = Object.keys(data).reduce((object, key) => {
+			if (key !== 'avatar') {
+				object[key] = data[key]
+			}
+			return object
+		}, {})
+		updateUser(newData ,userProfile.id)
+		if(resultImage){
+			addAvatar(data.avatar ,userProfile.id)
+			setResultImage(null)
+		}
 	})
 
 	const initialValue = {
@@ -43,6 +67,8 @@ const ProfileForm = ({ userProfile, handleIsOpenForm }) => {
 		name: userProfile.name || '',
 		birthday: userProfile.birthday || '',
 	}
+
+	const [resultImage, setResultImage] = useState()
 
 	return (
 		<div className="form-wrap">
@@ -57,6 +83,7 @@ const ProfileForm = ({ userProfile, handleIsOpenForm }) => {
 					{(errors) => {
 						return (
 							<Form>
+								<Avatar resultImage={resultImage} setResultImage={setResultImage} />
 								<Field component={TextField} name="alias" />
 								{errors.alias ? <div>{error.alias}</div> : null}
 								<br />
@@ -72,6 +99,13 @@ const ProfileForm = ({ userProfile, handleIsOpenForm }) => {
 								<Field component={TextField} name="birthday" />
 								{errors.name ? <div>{error.name}</div> : null}
 								<br />
+								<Field
+									component={FormikAutocomplete}
+									name="visibility"
+									label="visible to"
+									value={options.value}
+									options={options}
+								/>
 								<br />
 								<Button variant="outlined" onClick={handleIsOpenForm}>
 									Cancel

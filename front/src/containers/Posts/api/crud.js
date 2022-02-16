@@ -12,3 +12,11 @@ export const AddPost = async (data) =>{
 export const updatePost = async (id , data) =>{
 	return apiClient.put(`/post/${id}`, data)
 }
+
+export const addAvatar = async (data, id) => {
+	return apiClient.post(`/post/${id}/avatar`, data, {
+		headers: { 'Content-Type': 'multipart/form-data' },
+	});
+};
+
+

@@ -1,36 +1,77 @@
 import React from 'react'
 
 import ProfileForm from '../ProfileForm/index'
-import {Button ,Grid} from '@mui/material'
+import { Button, Grid } from '@mui/material'
 
 import PT from 'prop-types'
 
 const Profile = ({ userProfile, handleIsOpenForm, isOpenForm }) => {
+	const host = 'http://localhost:3002/'
 	return (
 		<>
 			<Grid container spacing={2}>
-				<Grid item xs={2}> Id </Grid>
-				<Grid item xs={3}> {userProfile.id}</Grid>
+				<Grid item xs={2}>
+					Avatar
+				</Grid>
+				{userProfile.avatar && (
+					<Grid item xs={3}>
+						<img src={`${host}${userProfile.avatar}`} />{' '}
+					</Grid>
+				)}
 			</Grid>
 			<Grid container spacing={2}>
-				<Grid item xs={2}> Name </Grid>
-				<Grid item xs={3}> {userProfile.name}</Grid>
+				<Grid item xs={2}>
+
+					Id
+				</Grid>
+				<Grid item xs={3}>
+					{userProfile.id}
+				</Grid>
 			</Grid>
 			<Grid container spacing={2}>
-				<Grid item xs={2}> Alias </Grid>
-				<Grid item xs={3}> {userProfile.alias}</Grid>
+				<Grid item xs={2}>
+					Name
+				</Grid>
+				<Grid item xs={3}>
+					{userProfile.name}
+				</Grid>
 			</Grid>
 			<Grid container spacing={2}>
-				<Grid item xs={2}> phone </Grid>
-				<Grid item xs={3}> {userProfile.phone}</Grid>
+				<Grid item xs={2}>
+					Alias
+				</Grid>
+				<Grid item xs={3}>
+					{userProfile.alias}
+				</Grid>
 			</Grid>
 			<Grid container spacing={2}>
-				<Grid item xs={2}> birthday </Grid>
-				<Grid item xs={3}> {userProfile.birthday}</Grid>
+				<Grid item xs={2}>
+					phone
+				</Grid>
+				<Grid item xs={3}>
+					{userProfile.phone}
+				</Grid>
+			</Grid>
+			<Grid container spacing={2}>
+				<Grid item xs={2}>
+					birthday
+				</Grid>
+				<Grid item xs={3}>
+					{userProfile.birthday}
+				</Grid>
+			</Grid>
+			<Grid container spacing={2}>
+				<Grid item xs={2}>
+					Visibility
+				</Grid>
+				<Grid item xs={3}>
+					{userProfile.visibility}
+				</Grid>
 			</Grid>
 
-
-			<Button variant="contained" onClick={handleIsOpenForm}>Edit profile</Button>
+			<Button variant="contained" onClick={handleIsOpenForm}>
+				Edit profile
+			</Button>
 			{isOpenForm && (
 				<ProfileForm
 					handleIsOpenForm={handleIsOpenForm}

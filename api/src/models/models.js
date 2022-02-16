@@ -22,10 +22,10 @@ const User = sequelize.define('user', {
 		allowNull: false,
 	},
 	phone: {
-		type: DataTypes.STRING,
+		type: DataTypes.INTEGER,
 	},
 	birthday: {
-		type: DataTypes.DATEONLY,
+		type: DataTypes.STRING,
 	},
 	avatar: {
 		type: DataTypes.STRING,
@@ -46,6 +46,9 @@ const Post = sequelize.define('post', {
 		allowNull: false,
 	},
 	visibility: {
+		type: DataTypes.STRING,
+	},
+	avatar: {
 		type: DataTypes.STRING,
 	},
 })

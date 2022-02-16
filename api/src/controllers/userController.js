@@ -11,8 +11,8 @@ class UserController {
 	async getAll(req, res) {
 		return res.json(await getUsers())
 	}
-	async update(req, res) {
-		return res.json(await updateUser(req.body, req.params.id))
+	async update(request, response) {
+		return response.json(await updateUser(request.body, request.params.id))
 	}
 	async delete(req, res) {
 		return res.json(await deleteUser(req.params.id))
@@ -25,6 +25,7 @@ class UserController {
 			}
 		} catch (e) {
 			console.log(e)
+			console.log('error back')
 		}
 	}
 	async getAvatar(req, res) {
