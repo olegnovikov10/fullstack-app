@@ -2,6 +2,17 @@ const sequelize = require('../config/db')
 
 const { DataTypes } = require('sequelize')
 
+const Session = sequelize.define('session', {
+	id: {
+		type: DataTypes.INTEGER,
+		primaryKey: true,
+		autoIncrement: true,
+	},
+	token: {
+		type: DataTypes.STRING,
+	},
+})
+
 const Logs = sequelize.define(
 	'logs',
 	{
@@ -35,7 +46,6 @@ const User = sequelize.define('user', {
 	},
 	alias: {
 		type: DataTypes.STRING,
-		allowNull: false,
 	},
 	name: {
 		type: DataTypes.STRING,
@@ -93,6 +103,11 @@ const Like = sequelize.define('like', {
 	},
 })
 
+User.hasMany(Session, {
+	foreignKey: 'userId',
+})
+Session.belongsTo(User)
+
 User.hasMany(Post, {
 	foreignKey: 'userId',
 })
@@ -130,4 +145,5 @@ module.exports = {
 	Like,
 	Comment,
 	Logs,
+	Session,
 }
