@@ -7,6 +7,9 @@ module.exports = {
 	getUser: async (userId) => {
 		return await User.findOne({ where: { id: userId } })
 	},
+	getUserByEmail: async (email) => {
+		return await User.findOne({ where: { email: email } })
+	},
 	createUser: async (user) => {
 		return await User.create(user)
 	},

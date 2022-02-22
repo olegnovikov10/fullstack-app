@@ -6,10 +6,13 @@ const config = require('./config/config')
 const models = require('./models/models')
 const router = require('./routes/index')
 const path = require('path')
+const passport = require('passport')
 
 const error = require('./middleware/error')
 
 const logsMiddleware = require('./middleware/logs')
+require('./domain/google.strategy')
+require('./domain/facebook.strategy')
 
 const app = express()
 
@@ -20,6 +23,7 @@ app.use(logsMiddleware({ logTable: models.Logs }))
 app.use(cors())
 
 app.use(express.json())
+app.use(passport.initialize())
 
 app.use('/api', router)
 app.use('/images', express.static(path.join(__dirname, '../images')))
