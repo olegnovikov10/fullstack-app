@@ -13,7 +13,7 @@ const UsersContainer = () => {
 	return (
 		<>
 			{isFetching && <Loading />}
-			<Users  users={users} />
+			<Users users={users} />
 		</>
 	)
 }

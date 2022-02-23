@@ -1,11 +1,13 @@
-import React from 'react'
-
+import authContext from '../../authContext'
 import ProfileForm from '../ProfileForm/index'
 import { Button, Grid } from '@mui/material'
 
 import PT from 'prop-types'
+import { useContext } from 'react'
 
-const Profile = ({ userProfile, handleIsOpenForm, isOpenForm }) => {
+const Profile = ({  handleIsOpenForm, isOpenForm }) => {
+	const userProfile  = useContext(authContext)
+	console.log(userProfile.isLogin)
 	const host = 'http://localhost:3002/'
 	return (
 		<>
