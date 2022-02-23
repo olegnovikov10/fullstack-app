@@ -12,7 +12,7 @@ ReactDOM.render(
 		<QueryClientProvider client={queryClient}>
 		<ErrorBoundary>
 			<BrowserRouter>
-				<App />
+					<App />
 			</BrowserRouter>
 		</ErrorBoundary>
 		</QueryClientProvider>

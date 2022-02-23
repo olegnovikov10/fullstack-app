@@ -1,7 +1,7 @@
 import {apiClient} from '../../../config/axios'
 
 export const getUser =  async (id) =>{
-	return apiClient.get(`/user/${id}`)
+	return await apiClient.get(`/user/${id}`)
 }
 
 export const updateUser =  async (data , id) =>{
